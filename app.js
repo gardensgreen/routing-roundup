@@ -24,6 +24,11 @@ app.use(["/margot", "/margeaux"], router);
     res.send(path.toUpperCase());
 })  */
 
+app.all(/\/?about\/\w+/g, (req, res) => {
+    res.status(404);
+    res.send(console.log("NOT FOUND"));
+});
+
 app.all("*", (req, res) => {
     const pageData = {
         path: req.path,
@@ -33,5 +38,5 @@ app.all("*", (req, res) => {
     res.render("layout", pageData);
 });
 
-const port = 8081;
+const port = 10000;
 app.listen(port, () => console.log("Listening on port " + port));
